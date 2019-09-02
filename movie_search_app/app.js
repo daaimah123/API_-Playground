@@ -10,6 +10,11 @@ var app = express();
 const fetch = require('node-fetch');
 app.set('view engine', 'ejs');
 
+app.get('/', (req, res) => {
+        res.render('search')
+})
+
+
 app.get('/results', (req, res) => {
     fetch('http://www.omdbapi.com/?s=california&apikey=thewdb')
         .then(req => req.json())
