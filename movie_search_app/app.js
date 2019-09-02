@@ -6,14 +6,18 @@
 require('dotenv').config();
 var express = require('express');
 var app = express();
-var request = require('request');
+// var request = require('request');
 const fetch = require('node-fetch');
+app.set('view engine', 'ejs');
 
 app.get('/results', (req, res) => {
     fetch('http://www.omdbapi.com/?s=california&apikey=thewdb')
         .then(req => req.json())
-        .then(data => res.send(data))
-        .catch(error => error.message)
+        .then((data, error)=> {
+            if(res.status(200) && !error){
+                res.render('results')
+            }})
+        .catch(error => console.log(error.message))
 })
 
 //start server with node app.js
