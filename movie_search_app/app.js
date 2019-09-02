@@ -15,7 +15,7 @@ app.get('/results', (req, res) => {
         .then(req => req.json())
         .then((data, error)=> {
             if(res.status(200) && !error){
-                res.render('results')
+                res.render('results', {data: data})
             }})
         .catch(error => console.log(error.message))
 })
