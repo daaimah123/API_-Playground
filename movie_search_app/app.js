@@ -14,9 +14,11 @@ app.get('/', (req, res) => {
         res.render('search')
 })
 
+//TODO: need to handle when query is undefined => try again message
 
 app.get('/results', (req, res) => {
     var searchQuery = req.query.search;
+
     var nonPrivateAccessToUrl = '&apikey=thewdb';
     var url = 'http://www.omdbapi.com/?s=';
     var newUrl = url + searchQuery + nonPrivateAccessToUrl;
