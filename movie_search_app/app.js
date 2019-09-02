@@ -16,7 +16,12 @@ app.get('/', (req, res) => {
 
 
 app.get('/results', (req, res) => {
-    fetch('http://www.omdbapi.com/?s=california&apikey=thewdb')
+    var searchQuery = req.query.search;
+    var nonPrivateAccessToUrl = '&apikey=thewdb';
+    var url = 'http://www.omdbapi.com/?s=';
+    var newUrl = url + searchQuery + nonPrivateAccessToUrl;
+
+    fetch(newUrl)
         .then(req => req.json())
         .then((data, error)=> {
             if(res.status(200) && !error){
